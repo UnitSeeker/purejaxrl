@@ -1,11 +1,11 @@
-[tool.poetry]
+[project]
 name = "purejaxrl"
 version = "0.1.0"
 description = "High-performance RL training library in JAX"
-authors = ["PureJaxRL Contributors"]
 readme = "README.md"
-license = "Apache-2.0"
-repository = "https://github.com/luchris429/purejaxrl"
+license = {text = "Apache-2.0"}
+authors = [{name = "PureJaxRL Contributors"}]
+requires-python = ">=3.9,<4"
 keywords = ["reinforcement-learning", "jax", "machine-learning"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -19,37 +19,42 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-jax = ">=0.2.26"
-jaxlib = ">=0.1.74"
-flax = "*"
-optax = "*"
-gymnax = "*"
-brax = "*"
-evosax = "*"
-distrax = "*"
-flashbax = "*"
-navix = "*"
-numpy = "*"
-wandb = "*"
+dependencies = [
+    "jax>=0.2.26",
+    "jaxlib>=0.1.74",
+    "flax",
+    "optax",
+    "gymnax",
+    "brax",
+    "evosax",
+    "distrax",
+    "flashbax",
+    "navix",
+    "numpy",
+    "wandb",
+]
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.4.0"
-pytest-cov = "^4.1.0"
-pytest-mock = "^3.11.0"
-black = "^23.0.0"
-isort = "^5.12.0"
-flake8 = "^6.0.0"
-mypy = "^1.4.0"
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0,<8",
+    "pytest-cov>=4.1.0,<5",
+    "pytest-mock>=3.11.0,<4",
+    "black>=23.0.0,<24",
+    "isort>=5.12.0,<6",
+    "flake8>=6.0.0,<7",
+    "mypy>=1.4.0,<2",
+]
 
-[tool.poetry.scripts]
+[project.scripts]
 test = "pytest:main"
 tests = "pytest:main"
 
+[project.urls]
+Repository = "https://github.com/luchris429/purejaxrl"
+
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
